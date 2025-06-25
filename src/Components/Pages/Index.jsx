@@ -92,7 +92,7 @@ function Index() {
                 <p className='my-3'>
                   Shop the latest trends and classic bags just for you
                 </p>
-                <Link href='/shop' className='btn hero-btn mt-3'>
+                <Link to='/shop' className='btn hero-btn mt-3'>
                   Shop Now!
                 </Link>
               </div>
@@ -108,7 +108,7 @@ function Index() {
                 <p className='my-3'>
                   Shop the latest trends and classic slippers just for you
                 </p>
-                <Link href='/footwear' className='btn hero-btn mt-3'>
+                <Link to='/footwear' className='btn hero-btn mt-3'>
                   Shop Now!
                 </Link>
               </div>
@@ -123,7 +123,7 @@ function Index() {
                   Shop the latest trends of bags and classic Slippers just for
                   you
                 </p>
-                <Link href='/shop' className='btn hero-btn mt-3'>
+                <Link to='/shop' className='btn hero-btn mt-3'>
                   Shop Now!
                 </Link>
               </div>
