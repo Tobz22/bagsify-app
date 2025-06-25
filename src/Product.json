@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1,
+    "sku": "501-CC-BLK",
+    "image": "/Images/Bag1.jpg",
+    "ProductName": "Christian Dior",
+    "Price": "₦12,000",
+    "tag": "New"
+  },
+  {
+    "id": 2,
+    "image": "/Images/bag2.jpg",
+    "sku": "502-DL-BRN",
+    "ProductName": "Demellier London",
+    "Price": "₦42,000",
+    "oldprice": "₦45000",
+    "tag": "Sale"
+  },
+  {
+    "id": 3,
+    "image": "/Images/Bag3.jpg",
+    "ProductName": "Channel",
+    "Price": "₦12,000",
+    "tag": "New"
+  },
+  {
+    "id": 4,
+    "image": "/Images/Bag4.jpg",
+    "ProductName": "Gucci",
+    "Price": "₦13,000",
+    "oldprice": "₦15,000",
+    "tag": "Sale"
+  },
+  {
+    "id": 5,
+    "image": "/Images/Bag5.jpg",
+    "ProductName": "Coach Cheerie",
+    "Price": "₦20,000",
+    "tag": "New"
+  },
+  {
+    "id": 6,
+    "image": "/Images/Bag6.jpg",
+    "ProductName": "Chrisbella",
+    "Price": "₦42,000",
+    "oldprice": "₦44,000",
+    "tag": "Sale"
+  },
+  {
+    "id": 7,
+    "image": "/Images/Bag7.jpg",
+    "ProductName": "Bagco",
+    "Price": "₦43,000",
+    "tag": "New"
+  },
+  {
+    "id": 8,
+    "sku": "508-CC-SV",
+    "image": "/Images/bag8.jpg",
+    "ProductName": "Chio 2nd",
+    "Price": "₦16,000"
+  },
+  {
+    "id": 9,
+    "image": "/Images/bag9.jpg",
+    "ProductName": "Michael Knors",
+    "Price": "₦16,000"
+  },
+  {
+    "id": 10,
+    "image": "/Images/bag10.jpg",
+    "ProductName": "Tote Bag",
+    "Price": "₦12,000"
+  },
+  {
+    "id": 11,
+    "image": "/Images/bag11.jpg",
+    "ProductName": "MK",
+    "Price": "₦18,000"
+  },
+  {
+    "id": 12,
+    "image": "/Images/bag12.jpg",
+    "ProductName": "Outlash Luxury Midi",
+    "Price": "₦41,000"
+  },
+  {
+    "id": 13,
+    "image": "/Images/bag13.jpg",
+    "ProductName": "Coach-mini",
+    "Price": "₦13,000"
+  },
+  {
+    "id": 14,
+    "image": "/Images/bag14.jpg",
+    "ProductName": "Hermes",
+    "Price": "₦31,000"
+  },
+  {
+    "id": 15,
+    "image": "/Images/bag15.jpg",
+    "ProductName": "MISS GAIL",
+    "Price": "₦42,000"
+  },
+  {
+    "id": 16,
+    "image": "/Images/bag16.jpg",
+    "ProductName": "Luxury J'AIDIOR",
+    "Price": "₦34,000"
+  }
+]

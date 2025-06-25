@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "type": "Palm",
+    "image": "/Images/footwear1.jpg",
+    "productname": "Hermes Palm",
+    "Price": "₦32,000"
+  },
+  {
+    "id": 2,
+    "type": "Scandals",
+    "image": "/Images/footwear4.jpg",
+    "productname": "Channel Scandals",
+    "Price": "₦22,000"
+  },
+  {
+    "id": 3,
+    "type": "Slippers",
+    "image": "/Images/footwear5.jpg",
+    "productname": "Versace Slippers",
+    "Price": "₦9,500"
+  },
+  {
+    "id": 4,
+    "type": "Slippers",
+    "image": "/Images/footwear6.jpg",
+    "productname": "Primark Slippers",
+    "Price": "₦12,000"
+  },
+  {
+    "id": 5,
+    "type": "Sandals",
+    "image": "/Images/footwear7.jpg",
+    "productname": "Zara Scandals",
+    "Price": "₦27,000"
+  },
+  {
+    "id": 6,
+    "type": "Heels",
+    "image": "/Images/footwear8.jpg",
+    "productname": "Zara Heels",
+    "Price": "₦15,000"
+  },
+  {
+    "id": 7,
+    "type": " Slippers",
+    "image": "/Images/slippers1.jpg",
+    "productname": "Hermes Slippers",
+    "Price": "₦22,000"
+  },
+  {
+    "id": 8,
+    "type": " Sandals",
+    "image": "/Images/subBanner1.jpg",
+    "productname": "Louis Vuitton Sandals",
+    "Price": "₦26,000"
+  }
+]
