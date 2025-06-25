@@ -27,7 +27,7 @@ function Contact() {
               <i className='ri-phone-line icon'>
                 <h5>Contact</h5>
                 <p>
-                  <strong>Mobile:</strong>+234 81 5389 9586
+                  <strong>Mobile:</strong>+234 90 3260 0312
                 </p>
                 <p>
                   <strong>Email:</strong>bagsify@gmail.com

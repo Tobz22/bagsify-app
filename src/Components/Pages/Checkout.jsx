@@ -58,7 +58,7 @@ function Checkout() {
   }
 
   // Your WhatsApp number (include country code, no + sign)
-  const whatsappNumber = '2349161627359' // <-- replace with your WhatsApp number
+  const whatsappNumber = '2349032600312' // <-- replace with your WhatsApp number
 
   // WhatsApp URL with prefilled message
   const whatsappURL = `https://wa.me/${whatsappNumber}?text=${buildWhatsappMessage()}`

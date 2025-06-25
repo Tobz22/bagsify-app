@@ -129,14 +129,22 @@ function AdminDashboard() {
           </div>
           <div className='col-md-6'>
             <input
-              type='text'
-              name='image'
+              type='file'
+              accept='image/*'
               className='form-control'
-              placeholder='Image URL'
-              value={formData.image}
-              onChange={handleChange}
-              required
+              onChange={(e) => {
+                const file = e.target.files[0]
+                if (file) {
+                  const reader = new FileReader()
+                  reader.onloadend = () => {
+                    setFormData({ ...formData, image: reader.result })
+                  }
+                  reader.readAsDataURL(file)
+                }
+              }}
+              required={!formData.id}
             />
+
             {formData.image && (
               <img
                 src={formData.image}
