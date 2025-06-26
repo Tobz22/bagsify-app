@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from 'firebase/firestore'
+import { db, storage } from '../firebase'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 function AdminDashboard() {
-  const [category, setCategory] = useState('products') // 'products' or 'footwear'
+  const [category, setCategory] = useState('products')
   const [items, setItems] = useState([])
-
   const [formData, setFormData] = useState({
     id: '',
     ProductName: '',
@@ -12,55 +21,64 @@ function AdminDashboard() {
     image: '',
     tag: '',
   })
+  const [file, setFile] = useState(null)
 
   const navigate = useNavigate()
 
   useEffect(() => {
     const isLoggedIn = sessionStorage.getItem('isAdminLoggedIn')
-    if (isLoggedIn !== 'true') {
-      navigate('/admin-login')
-    }
+    if (isLoggedIn !== 'true') navigate('/admin-login')
   }, [navigate])
 
-  // Load items based on selected category
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem(category)) || []
-    setItems(saved)
-  }, [category])
+  const fetchItems = async () => {
+    const snapshot = await getDocs(collection(db, category))
+    const list = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }))
+    setItems(list)
+  }
 
-  // Save to localStorage when items change
   useEffect(() => {
-    localStorage.setItem(category, JSON.stringify(items))
-  }, [items, category])
+    fetchItems()
+  }, [category])
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
   }
 
-  const handleSubmit = (e) => {
+  const handleImageUpload = async () => {
+    if (!file) return formData.image
+    const fileRef = ref(storage, `${category}/${file.name}`)
+    await uploadBytes(fileRef, file)
+    return await getDownloadURL(fileRef)
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    const imageUrl = await handleImageUpload()
+
     if (formData.id) {
-      setItems((prev) =>
-        prev.map((item) => (item.id === formData.id ? { ...formData } : item))
-      )
+      const docRef = doc(db, category, formData.id)
+      await updateDoc(docRef, { ...formData, image: imageUrl })
     } else {
-      const newItem = {
-        ...formData,
-        id: Date.now().toString(),
-      }
-      setItems((prev) => [...prev, newItem])
+      await addDoc(collection(db, category), { ...formData, image: imageUrl })
     }
+
     setFormData({ id: '', ProductName: '', Price: '', image: '', tag: '' })
+    setFile(null)
+    fetchItems()
   }
 
   const handleEdit = (item) => {
     setFormData(item)
   }
 
-  const handleDelete = (id) => {
-    if (window.confirm('Are you sure you want to delete this item?')) {
-      setItems((prev) => prev.filter((item) => item.id !== id))
+  const handleDelete = async (id) => {
+    if (window.confirm('Are you sure?')) {
+      await deleteDoc(doc(db, category, id))
+      fetchItems()
     }
   }
 
@@ -73,115 +91,88 @@ function AdminDashboard() {
     <div className='container py-4'>
       <div className='d-flex justify-content-between align-items-center mb-4'>
         <h2>Admin Dashboard</h2>
-        <button
-          className='btn btn-outline-danger btn-sm'
-          onClick={handleLogout}
-        >
+        <button className='btn btn-outline-danger' onClick={handleLogout}>
           Logout
         </button>
       </div>
 
-      <div className='mb-4'>
-        <label className='form-label fw-bold'>Select Item Type:</label>
-        <select
-          className='form-select'
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <option value='products'>Products</option>
-          <option value='footwear'>Footwear</option>
-        </select>
-      </div>
+      <select
+        className='form-select mb-4'
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value='products'>Products</option>
+        <option value='footwear'>Footwear</option>
+      </select>
 
-      <form onSubmit={handleSubmit} className='mb-4'>
-        <div className='row g-3'>
-          <div className='col-md-4'>
-            <input
-              type='text'
-              name='ProductName'
-              className='form-control'
-              placeholder='Product Name'
-              value={formData.ProductName}
-              onChange={handleChange}
-              required
+      <form onSubmit={handleSubmit} className='row g-3 mb-5'>
+        <div className='col-md-4'>
+          <input
+            name='ProductName'
+            className='form-control'
+            placeholder='Product Name'
+            value={formData.ProductName}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className='col-md-3'>
+          <input
+            name='Price'
+            className='form-control'
+            placeholder='Price (₦)'
+            value={formData.Price}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className='col-md-3'>
+          <input
+            name='tag'
+            className='form-control'
+            placeholder='Tag (New, Sale...)'
+            value={formData.tag}
+            onChange={handleChange}
+          />
+        </div>
+        <div className='col-md-6'>
+          <input
+            type='file'
+            accept='image/*'
+            className='form-control'
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          {formData.image && (
+            <img
+              src={formData.image}
+              alt='Preview'
+              className='img-fluid mt-2'
+              style={{ maxHeight: '150px' }}
             />
-          </div>
-          <div className='col-md-3'>
-            <input
-              type='text'
-              name='Price'
-              className='form-control'
-              placeholder='Price (₦)'
-              value={formData.Price}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className='col-md-3'>
-            <input
-              type='text'
-              name='tag'
-              className='form-control'
-              placeholder='Tag (New, Sale...)'
-              value={formData.tag}
-              onChange={handleChange}
-            />
-          </div>
-          <div className='col-md-6'>
-            <input
-              type='file'
-              accept='image/*'
-              className='form-control'
-              onChange={(e) => {
-                const file = e.target.files[0]
-                if (file) {
-                  const reader = new FileReader()
-                  reader.onloadend = () => {
-                    setFormData({ ...formData, image: reader.result })
-                  }
-                  reader.readAsDataURL(file)
-                }
-              }}
-              required={!formData.id}
-            />
-
-            {formData.image && (
-              <img
-                src={formData.image}
-                alt='Preview'
-                className='img-fluid mt-2 rounded'
-                style={{ maxHeight: '150px' }}
-              />
-            )}
-          </div>
-          <div className='col-md-12'>
-            <button type='submit' className='btn btn-primary'>
-              {formData.id ? 'Update Item' : 'Add Item'}
-            </button>
-          </div>
+          )}
+        </div>
+        <div className='col-md-12'>
+          <button className='btn btn-primary'>
+            {formData.id ? 'Update' : 'Add'} Item
+          </button>
         </div>
       </form>
 
-      <h4 className='mt-5'>
-        All {category === 'products' ? 'Products' : 'Footwear'}
-      </h4>
+      <h4 className='mb-3'>All {category}</h4>
       <div className='row g-4'>
         {items.map((item) => (
           <div className='col-md-4' key={item.id}>
             <div className='card h-100 shadow-sm'>
               <img
                 src={item.image}
-                alt={item.ProductName}
                 className='card-img-top'
                 style={{ height: '200px', objectFit: 'cover' }}
               />
               <div className='card-body'>
-                <h5 className='card-title'>{item.ProductName}</h5>
-                <p className='card-text'>₦{item.Price}</p>
-                {item.tag && (
-                  <span className='badge bg-info mb-2'>{item.tag}</span>
-                )}
-                <div className='d-flex justify-content-between'>
+                <h5>{item.ProductName}</h5>
+                <p>₦{item.Price}</p>
+                {item.tag && <span className='badge bg-info'>{item.tag}</span>}
+                <div className='d-flex justify-content-between mt-3'>
                   <button
                     className='btn btn-sm btn-warning'
                     onClick={() => handleEdit(item)}

@@ -17,7 +17,7 @@ function Contact() {
             <div className='contact-box bg-transparent border-0'>
               <i className='ri-map-pin-line icon'></i>
               <h5>Address</h5>
-              <p>Lorem, ipsum dolor sit amet consectetur adipisicing.</p>
+              <p>Upper Agbahro Ughelli, Delta State.</p>
             </div>
           </div>
 
@@ -42,7 +42,7 @@ function Contact() {
               <i className='ri-time-line icon'>
                 <h5>Hours of Operation</h5>
                 <p>
-                  <strong>Mon - Sat:</strong> 08:30 - 16:00
+                  <strong>Mon - Sat:</strong> 8am - 6pm
                 </p>
               </i>
             </div>

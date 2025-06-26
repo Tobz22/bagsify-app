@@ -28,7 +28,7 @@ function Footer() {
                     </li>
                   </ul>
                   <p className='mb-0'>
-                    <strong>+234 (0)81 5389 9586</strong>
+                    <strong>+234 (0)90 3260 0312</strong>
                   </p>
                   <p>bagsify@gmail.com</p>
                 </div>
@@ -93,7 +93,7 @@ function Footer() {
 
                     {/* <a href='#' className='ri ri-whatsapp-line'></a> */}
                     <a
-                      href='https://wa.me/2348153899586'
+                      href='https://wa.me/2349032600312'
                       target='_blank'
                       rel='noopener noreferrer'
                       className='ri-whatsapp-line'

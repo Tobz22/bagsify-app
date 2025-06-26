@@ -141,7 +141,10 @@ function Cart() {
                     })}
                   </span>
                 </div>
-                <Link to='/checkout' className='cart-btn w-100'>
+                <Link
+                  to='/checkout'
+                  className='cart-btn d-flex justify-content-center align-items-center w-100 mt-2 text-decoration-none text-center'
+                >
                   Proceed To CheckOut
                 </Link>
               </div>

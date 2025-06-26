@@ -227,7 +227,7 @@ const About = () => {
 
                 {/* <a href='#' className='ri ri-whatsapp-line'></a> */}
                 <a
-                  href='https://wa.me/2348153899586'
+                  href='https://wa.me/2349032600312'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='ri-whatsapp-line'

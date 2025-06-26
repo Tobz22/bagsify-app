@@ -33,18 +33,18 @@ function Stores() {
               <div className='col-md-6 mb-4'>
                 <h5 className='subtitle fw-semibold mb-4'>Address</h5>
                 <p className='text-muted mb-0'>
-                  No 2 Lorem ipsum dolor sit amet.
+                  Upper Agbahro Ughelli, Delta State.
                 </p>
-                <a href='#' className='underline-link text-black'>
+                {/* <a href='#' className='underline-link text-black'>
                   Get Direction
-                </a>
+                </a> */}
               </div>
 
               <div className='col-md-6 mb-4'>
                 <h5 className='subtitle fw-semibold mb-4'>Hour of Operation</h5>
                 <div className='d-flex gap-5 text-muted'>
                   <span>Mon - Sat:</span>
-                  <span>08:30 - 16:00</span>
+                  <span>8am - 6pm</span>
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@ function Stores() {
               <div className='col-md-6 mb-4'>
                 <h5 className='subtitle fw-semibold mb-4'>Contact</h5>
                 <p className='text-muted mb-0'>
-                  Mobile: <strong className='text dark'>081 5389 9586</strong>
+                  Mobile: <strong className='text dark'>090 3260 0312</strong>
                 </p>
                 <p className='text-muted'>Email: bagsify@gmail.com</p>
               </div>
