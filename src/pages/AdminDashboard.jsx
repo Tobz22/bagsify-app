@@ -101,7 +101,7 @@ function AdminDashboard() {
         value={category}
         onChange={(e) => setCategory(e.target.value)}
       >
-        <option value='products'>Products</option>
+        <option value='products'>Bags</option>
         <option value='footwear'>Footwear</option>
       </select>
 
